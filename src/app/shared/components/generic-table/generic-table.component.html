@@ -1,0 +1,69 @@
+<div class="generic-table">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" matSort>
+                        <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{getName(column)}} </th>
+                            <td mat-cell *matCellDef="let element">
+                                <ng-container
+                                    *ngIf="column !== 'edit' && column !== 'img' && column !== 'revoke' && column !== 'view' && column !== 'delete' && column !== 'settings' && column !== 'send'">
+
+                                    <span (click)="execute(column, element)">
+                                        {{column === 'lastLoginDate' || column === 'dateJoined' || column ===
+                                        'expirationDate' || column === 'dateCreated' || column === 'lastUpdated'||
+                                        column === 'lastLogin' ? (element[column] | date: 'short'): element[column] }}
+                                    </span>
+                                </ng-container>
+
+                                <ng-container *ngIf="column === 'img'">
+                                    <img [src]="element[column]" style="height: 50px;" />
+                                </ng-container>
+
+                                <ng-container *ngIf="column === 'view'">
+                                    <mat-icon (click)="execute('view', element)">visibility</mat-icon>
+                                </ng-container>
+
+                                <ng-container *ngIf="column === 'pay'">
+                                    <i class="fas fa-hand-holding-usd" (click)="execute('pay', element)"></i>
+                                </ng-container>
+
+                                <ng-container *ngIf="column === 'requests'">
+                                    <mat-icon (click)="execute('requests', element)">calendar_today</mat-icon>
+                                </ng-container>
+
+                                <ng-container *ngIf="column === 'edit'">
+                                    <mat-icon (click)="execute('edit', element)">edit</mat-icon>
+                                </ng-container>
+
+                                <ng-container *ngIf="column === 'update'">
+                                    <mat-icon (click)="execute('update', element)">edit</mat-icon>
+                                </ng-container>
+
+                                <ng-container *ngIf="column === 'settings'">
+                                    <mat-icon (click)="execute('settings', element)">settings</mat-icon>
+                                </ng-container>
+
+                                <ng-container *ngIf="column === 'revoke'">
+                                    <mat-icon (click)="execute('revoke', element)">undo</mat-icon>
+                                </ng-container>
+
+                                <ng-container *ngIf="column === 'delete'">
+                                    <mat-icon (click)="execute('delete', element)">delete</mat-icon>
+                                </ng-container>
+
+                                <ng-container *ngIf="column === 'send'">
+                                    <i class="fas fa-paper-plane"></i>
+                                </ng-container>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="container-fluid">
+    <form [formGroup]="stockForm">
+        <div class="row">
+            <div class="col-12">
+                <h4>Stock Units & Prices</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <mat-form-field appearance="outline" class="stock-field">
+                    <mat-label>OSRS Units in stock</mat-label>
+                    <input matInput placeholder="OSRS Units in stock" formControlName="osrsUnits" type="number">
+                    <mat-hint>OSRS Units in stock <strong>required</strong></mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field appearance="outline" class="stock-field">
+                    <mat-label>OSRS Price per unit (WE ARE SELLING FOR)
+                    </mat-label>
+                    <input matInput placeholder="OSRS Price per unit" formControlName="osrsPriceSelling" type="number">
+                    <mat-hint>OSRS Price per unit <strong>required</strong></mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field appearance="outline" class="stock-field">
+                    <mat-label>OSRS Price per unit (WE ARE BUYING FOR)
+                    </mat-label>
+                    <input matInput placeholder="OSRS Price per unit" formControlName="osrsPriceBuying" type="number">
+                    <mat-hint>OSRS Price per unit <strong>required</strong></mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <mat-form-field appearance="outline" class="stock-field">
+                    <mat-label>RS3 Units in stock</mat-label>
+                    <input matInput placeholder="Runescape 3 Units in stock" formControlName="rs3Units" type="number">
+                    <mat-hint>Runescape 3 Units in stock <strong>required</strong></mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field appearance="outline" class="stock-field">
+                    <mat-label>RS3 Price per unit (WE ARE SELLING FOR)
+                    </mat-label>
+                    <input matInput placeholder="Price per unit" formControlName="rs3PriceSelling" type="number">
+                    <mat-hint>Runescape 3 Price per unit <strong>required</strong></mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field appearance="outline" class="stock-field">
+                    <mat-label>RS3 Price per unit (WE ARE BUYING FOR)
+                    </mat-label>
+                    <input matInput placeholder="RS3 Price per unit" formControlName="rs3PriceBuying" type="number">
+                    <mat-hint>RS3 Price per unit <strong>required</strong></mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-left">
+                <button mat-raised-button type="button" (click)="updateStocks()">
+                    Update Stock Units & Prices
+                </button>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <div class="row mt-4">
+        <div class="col-12">
+            <h4>Payment Gateway fees & limits</h4>
+        </div>
+    </div>
+
+
+    <form [formGroup]="paymentGatewaysForm">
+        <ng-container formArrayName="pgs">
+            <ng-container *ngFor="let f of getPgs().controls; index as i">
+                <ng-container [formGroupName]="i">
+
+                    <div class="row">
+                        <div class="col-3">
+                            <mat-form-field appearance="outline" class="stock-field">
+                                <mat-label>Payment Gateway Name</mat-label>
+                                <input matInput placeholder="Payment Gateway Name" formControlName="name">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field appearance="outline" class="stock-field">
+                                <mat-label>Payment Gateway Id</mat-label>
+                                <input matInput placeholder="Payment Gateway Id" formControlName="paymentGatewayId">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <mat-form-field appearance="outline" class="stock-field">
+                                <mat-label>Fees</mat-label>
+                                <input matInput placeholder="Fees" formControlName="fees" type="number">
+                                <mat-hint>Fees <strong>required</strong></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field appearance="outline" class="stock-field">
+                                <mat-label>Limit</mat-label>
+                                <input matInput placeholder="limit" formControlName="limit" type="number">
+                                <mat-hint>Limit <strong>required</strong></mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+                <hr>
+            </ng-container>
+            <div class="row">
+                <div class="col-12 text-left">
+                    <button mat-raised-button type="button" (click)="updatePgs()">
+                        Update Payment Gateways
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+    </form>
+</div>

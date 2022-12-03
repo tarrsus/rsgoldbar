@@ -1,0 +1,120 @@
+@import './colors'
+@import './layout/material'
+@import './layout/content'
+@import './layout/navbar'
+@import './layout/form'
+@import './pages/gold'
+@import './pages/sell'
+@import './pages/swap'
+@import './pages/infernal'
+@import './pages/accounts'
+@import './bootstrap.min'
+
+.sitemap-link
+    cursor: pointer
+
+.material-icons
+    &-custom
+        cursor: pointer
+        color: $primary-color
+
+.non-mobile
+    display: block !important
+
+.mobile
+    display: none !important
+@media only screen and (max-width: 991px)
+
+.footer
+    padding: 20px 0
+    .title
+        color: #28AAE2
+        font-size: 26px
+        line-height: 26px
+        margin-bottom: 15px
+        margin-top: 15px
+    .description
+        color: white
+        font-size: 15px
+        a
+            color: white
+            font-size: 15px
+            text-decoration: none
+
+.vertical-spacer
+    flex: 1
+
+.flex-spacer
+    flex: 1 1 auto
+
+.flex-spacer-half
+    flex: 0.3 1 auto
+
+@media only screen and (max-width: 991px)
+    .navbar-link
+        display: none !important
+    .mobile-navigator
+        display: block !important
+
+.navbar-link
+    font-size: 17px
+
+.blue-color
+    color: #00ccff
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+    -webkit-appearance: none !important
+    margin: 0 !important
+
+/* Firefox */
+input[type=number]
+    -moz-appearance: textfield !important
+
+.selected
+    // border: 1px solid #00A8E8
+    // border-color: #00A8E8
+    // box-shadow: 0 1px 5px 1px #00A8E8
+    // height: 100px
+    // max-height: 100px
+
+.expired
+    color: red
+
+.resolved
+    color: green
+
+.unresolved
+    color: yellow
+
+.open
+    color: purple
+
+.pending
+    color: gray
+
+.material-icons
+    cursor: pointer
+
+*:focus
+    outline: none !important
+
+.paginator
+    text-align: center
+    span
+        color: black
+    a
+        color: black
+        &:hover
+            background: $primary-color-bg
+            color: black
+            span
+                color: black
+    .current
+        background: $primary-color-bg !important
+        span
+            color: white
+
+
+.color-gold
+    color: #F6B000

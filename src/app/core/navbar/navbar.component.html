@@ -1,0 +1,157 @@
+<div class="navbar-header">
+  <div class="navbar-header-wrapper">
+    <div>
+      <a mat-button class="mat-button navbar-link" [routerLink]="['/']">
+        <img class="logo" src="./assets/images/branding/logo.png" />
+      </a>
+    </div>
+    <div>
+      <a mat-button class="mat-button navbar-link" [routerLink]="['/']">
+        <img class="rsgoldbar" src="./assets/images/branding/rsgoldbar.png" />
+      </a>
+    </div>
+
+    <a
+      mat-button
+      class="mat-button navbar-link"
+      [routerLink]="['/buy/oldschool']"
+    >
+      Buy Gold
+    </a>
+
+    <a mat-button class="mat-button navbar-link" [routerLink]="['/sell']">
+      Sell Gold
+    </a>
+
+    <a mat-button class="mat-button navbar-link" [routerLink]="['/swap']">
+      Swap Gold
+    </a>
+
+    <a mat-button class="mat-button navbar-link" [routerLink]="['/infernal']">
+      Infernal Cape
+    </a>
+
+    <!-- <a mat-button class="mat-button navbar-link" [routerLink]="[ '/rent-staker']">
+            Rent Staker
+        </a> -->
+
+    <div class="flex-spacer"></div>
+
+    <button
+      mat-button
+      class="mat-button navbar-link"
+      [matMenuTriggerFor]="currencyMenu"
+    >
+      <img
+        style="height: 20px"
+        [src]="'/assets/images/flags/' + currency + '.png'"
+      />
+      {{ currency }}
+      <i class="fas fa-caret-down"></i>
+    </button>
+
+    <mat-menu #currencyMenu="matMenu">
+      <button
+        mat-menu-item
+        *ngFor="let c of currencies"
+        (click)="watcher.setCurrency(c.name)"
+      >
+        <img
+          style="height: 20px"
+          [src]="'/assets/images/flags/' + c.name + '.png'"
+        />
+        {{ c.name }}
+      </button>
+    </mat-menu>
+
+    <!-- <a mat-button class="mat-button navbar-link" href="https://discord.gg/gRZDsGm3HJ" target="_blank">
+            <i class="fab fa-discord"></i> Discord
+        </a> -->
+
+    <button
+      mat-button
+      class="mat-button navbar-link"
+      mat-button
+      [matMenuTriggerFor]="profileMenu"
+      *ngIf="isLoggedIn"
+    >
+      Profile <i class="fas fa-caret-down"></i>
+    </button>
+
+    <mat-menu #profileMenu="matMenu">
+      <button
+        class="mat-button navbar-link"
+        mat-menu-item
+        routerLink="/profile/change-password"
+      >
+        Profile
+      </button>
+      <button
+        class="mat-button navbar-link"
+        mat-menu-item
+        routerLink="/profile/orders"
+      >
+        Orders
+      </button>
+      <button
+        class="mat-button navbar-link"
+        mat-menu-item
+        routerLink="/admin"
+        *ngIf="isAdmin || isWorker"
+      >
+        ACP
+      </button>
+    </mat-menu>
+
+    <button
+      mat-button
+      class="mat-button navbar-link"
+      routerLink="/login"
+      *ngIf="!isLoggedIn"
+    >
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <button
+      mat-button
+      class="mat-button navbar-link"
+      routerLink="/register"
+      *ngIf="!isLoggedIn"
+    >
+      <i class="fas fa-user"></i> Sign Up
+    </button>
+
+    <button
+      mat-button
+      class="mat-button navbar-link"
+      (click)="watcher.logout()"
+      *ngIf="isLoggedIn"
+    >
+      <i class="fas fa-sign-in-alt"></i> Sign Out
+    </button>
+
+    <button
+      class="mobile-navigator"
+      mat-button
+      #clickMenuTrigger="matMenuTrigger"
+      [matMenuTriggerFor]="mobileMenuOne"
+    >
+      <i class="material-icons"> menu </i>
+    </button>
+  </div>
+</div>
+
+<mat-menu #dashboardmenu="matMenu">
+  <button mat-menu-item [routerLink]="['/admin/orders']">
+    <span>Orders</span>
+  </button>
+  <button mat-menu-item [routerLink]="['/admin/stock']">
+    <span>Stock & Rates</span>
+  </button>
+</mat-menu>
+
+<mat-menu #mobileMenuOne="matMenu">
+  <button mat-menu-item [routerLink]="['/buy', 'oldschool']">Buy Gold</button>
+  <button mat-menu-item [routerLink]="['/sell']">Sell Gold</button>
+  <button mat-menu-item [routerLink]="['/swap']">Swap Gold</button>
+  <!-- <button mat-menu-item [routerLink]="[ '/rent-staker']">Rent Staker</button> -->
+</mat-menu>

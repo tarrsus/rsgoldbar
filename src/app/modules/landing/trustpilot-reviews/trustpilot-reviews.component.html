@@ -1,0 +1,27 @@
+<div
+  class="d-flex flex-row flex-wrap justify-content-between justify-content-sm-center"
+>
+  <img
+    class="arrow"
+    src="/assets/images/branding/right-arrow.png"
+    (click)="moveBackWard()"
+    alt=""
+  />
+  <app-trustpilot-review
+    *ngFor="let review of displayedReviews"
+    [review]="review"
+    class="p-2 single-review"
+  ></app-trustpilot-review>
+  <img
+    class="arrow"
+    src="/assets/images/branding/left-arrow.png"
+    (click)="moveForward()"
+    alt=""
+  />
+</div>
+<a
+  class="review-link"
+  href="https://www.trustpilot.com/review/rsgoldbar.com"
+  target="_blank"
+  >Write Review</a
+>

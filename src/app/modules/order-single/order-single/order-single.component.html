@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <ng-container *ngIf="orderItem">
+        <div class="row">
+            <div class="col-12">
+                <div class="order-item-container">
+                    <div class="order-id">
+                        Order Id: {{orderItem.orderId}}
+                    </div>
+                    <div class="order-details">
+                        Order Status: {{orderItem.orderStatus}}
+                    </div>
+                    <div class="order-details">
+                        Order Delivered: {{orderItem.delivered ? 'Yes' : 'No'}}
+                    </div>
+                    <div class="order-details" *ngIf="orderItem.orderAccount">
+                        Account Title: {{orderItem.orderAccount.account.title}}<br>
+                        Account Price: ${{orderItem.orderAccount.price}}
+                    </div>
+                    <div class="order-details" *ngIf="orderItem.orderGold">
+                        RSN: {{orderItem.orderGold.rsn}}<br>
+                        Amount: {{orderItem.orderGold.units}} (${{orderItem.orderGold.unitPrice}}/M)<br>
+                        Total Price: ${{orderItem.orderGold.amount}}<br>
+                        Type: {{orderItem.orderGold.type}}<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="center-chat-button">
+                    <button mat-raised-button class="buy-button" type="button" (click)="startChat()">Start
+                        Chat</button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

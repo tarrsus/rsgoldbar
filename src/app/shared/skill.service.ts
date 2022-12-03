@@ -1,0 +1,59 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/internal/operators/tap';
+import { MatSnackBar } from '@angular/material/snack-bar';
+@Injectable({
+  providedIn: 'root'
+})
+export class SkillService {
+  protected defaultController = `${environment.baseUrl}/api/`;
+  protected slug = 'skill';
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {
+  }
+
+  public getSkill(id: string): Observable<any> {
+    return this.http.get(`${this.defaultController}${this.slug}/${id}`);
+  }
+
+  public getSkills(): Observable<any> {
+    return this.http.get(`${this.defaultController}${this.slug}`);
+  }
+
+  public deleteSkill(id: string): Observable<any> {
+    return this.http.delete(`${this.defaultController}${this.slug}/${id}`).pipe(
+      tap(response => {
+        this.snackBar.open(response.result, 'Dismiss', {
+          duration: 5000,
+        });
+      }));
+  }
+
+  public addSkill(payload: any): Observable<any> {
+    return this.http.post(`${this.defaultController}${this.slug}`, payload).pipe(
+      tap(response => {
+        this.snackBar.open(response.result, 'Dismiss', {
+          duration: 5000,
+        });
+      }));
+  }
+
+  public editSkill(id: string, payload: any): Observable<any> {
+    return this.http.put(`${this.defaultController}${this.slug}/${id}`, payload).pipe(
+      tap(response => {
+        this.snackBar.open(response.result, 'Dismiss', {
+          duration: 5000,
+        });
+      }));
+  }
+
+  public updateSkillOrders(payload: any): Observable<any> {
+    return this.http.put(`${this.defaultController}${this.slug}/order`, payload).pipe(
+      tap(response => {
+        this.snackBar.open(response.result, 'Dismiss', {
+          duration: 5000,
+        });
+      }));
+  }
+}

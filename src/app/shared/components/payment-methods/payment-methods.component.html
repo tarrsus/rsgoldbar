@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-xl-6 col-lg-6 mb-4" *ngFor="let payment of paymentMethods">
+        <div class="payment-img text-center" [class.selected-pg]="payment.selected" (click)="select(payment)">
+            <div>
+                <img [ngClass]="payment.css" [src]="'/assets/images/payment-gateways/'+payment.img">
+            </div>
+        </div>
+    </div>
+</div>

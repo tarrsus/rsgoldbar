@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <form [formGroup]="referralCodeForm">
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3>Referrals</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field appearance="outline" class="stock-field">
+                    <mat-label>Referral Code</mat-label>
+                    <input matInput placeholder="Referral Code" formControlName="code" type="text">
+                    <mat-hint>Referral Code <strong>required</strong></mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-left">
+                <button class="mr-2" mat-raised-button type="button" (click)="reset()" *ngIf="selected">
+                    Cancel
+                </button>
+
+                <button mat-raised-button type="button" (click)="updateRefCode()">
+                    {{selected ? 'Update':'Add'}} Referral Code
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="paginator">
+                    <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+                    <pagination-controls (pageChange)="getReferrals($event)" id="server"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <app-generic-table [displayedColumns]="displayedColumns" [data]="data" (action)="onAction($event)">
+    </app-generic-table>
+
+    <li *ngFor="let _ of data | paginate: { id: 'server', itemsPerPage: 10, currentPage: page, totalItems: total }"
+        style="display: none;">
+    </li>
+</div>

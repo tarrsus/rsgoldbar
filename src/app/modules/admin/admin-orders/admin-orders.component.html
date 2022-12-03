@@ -1,0 +1,366 @@
+<div class="container-fluid">
+  <div class="mb-5 text-center text-uppercase">
+    <h2>Set Rates</h2>
+    <div class="d-flex flex-row justify-content-center flex-wrap">
+      <div class="pr-3 pl-3">
+        Current RS3 to OSRS rate: {{ rates.rs3 }}
+        <mat-form-field class="w-100" apperance="outline">
+          <input matInput #rs3 type="number" placeholder="RS3 to OSRS rate" />
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="setRate('rs3', rs3.value)"
+        >
+          Update RS3 to OSRS rate
+        </button>
+      </div>
+
+      <div class="pr-3 pl-3">
+        Current OSRS to RS3 rate: {{ rates.osrs }}
+        <mat-form-field class="w-100" apperance="outline">
+          <input matInput #osrs type="number" placeholder="OSRS to RS3 rate" />
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="setRate('osrs', osrs.value)"
+        >
+          Update OSRS to RS3 rate
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="ordersForm" (ngSubmit)="search(ordersForm.value)">
+    <div class="row">
+      <div class="col-3">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Enter a search value</mat-label>
+          <input
+            matInput
+            placeholder="Enter a search value"
+            formControlName="filter"
+            type="text"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Filter By</mat-label>
+          <mat-select formControlName="filterBy">
+            <mat-option value="null">None</mat-option>
+            <mat-option value="id">Order Id</mat-option>
+            <mat-option value="uuid">Order UUID</mat-option>
+            <mat-option value="email">Email</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-left">
+        <button mat-raised-button type="submit">Search</button>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-12">
+      <div class="paginator">
+        <div class="spinner" [ngClass]="{ hidden: !loading }"></div>
+        <pagination-controls
+          (pageChange)="getPage($event)"
+          id="server"
+        ></pagination-controls>
+      </div>
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        multiTemplateDataRows
+        class="mat-elevation-z8"
+      >
+        <ng-container matColumnDef="orderId">
+          <th mat-header-cell *matHeaderCellDef>Order #</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 300px; width: 300px"
+          >
+            Id: {{ element.orderId }}<br />
+            UUID: {{ element.uuid }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="tasks">
+          <th mat-header-cell *matHeaderCellDef>Order Type</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 100px; width: 100px"
+          >
+            <div [innerHTML]="element.orderType"></div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef>User</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 220px; width: 220px"
+          >
+            {{ element.user ? element.user.email : 'N/A' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ipAddress">
+          <th mat-header-cell *matHeaderCellDef>IP Address</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 150px; width: 150px"
+          >
+            {{ element.ipAddress }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentGateway">
+          <th mat-header-cell *matHeaderCellDef>Payment Gateway</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 100px; width: 100px"
+          >
+            {{ element.paymentGateway.name }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 100px; width: 100px"
+            [class.pending]="element.status === 'PENDING'"
+            [class.expired]="
+              element.status === 'EXPIRED' || element.status === 'CANCELED'
+            "
+            [class.open]="element.status === 'OPEN' || element.status === 'NEW'"
+            [class.resolved]="
+              element.status === 'RESOLVED' || element.status === 'COMPLETED'
+            "
+            [class.unresolved]="element.status === 'UNRESOLVED'"
+          >
+            {{ element.status ? element.status : '-' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef>Invoice</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 150px; width: 150px"
+          >
+            Subtotal {{ getCurrencySymbol(element.currency)
+            }}{{ element.invoice.subtotal }}<br />
+            Fee: {{ getCurrencySymbol(element.currency)
+            }}{{ element.invoice.fee }}<br />
+            Total: {{ getCurrencySymbol(element.currency)
+            }}{{ element.invoice.total }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delivered">
+          <th mat-header-cell *matHeaderCellDef>Delivered</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 100px; width: 100px"
+          >
+            {{ element.delivered ? 'Yes' : 'No' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dates">
+          <th mat-header-cell *matHeaderCellDef>Dates</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 125px; width: 125px"
+          >
+            Last Updated: {{ element.lastUpdated | date: 'short' }}<br />
+            Date Created: {{ element.dateCreated | date: 'short' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="view">
+          <th mat-header-cell *matHeaderCellDef>View</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 50px; width: 50px"
+          >
+            <i
+              class="material-icons"
+              (click)="
+                expandedElement = expandedElement === element ? null : element
+              "
+            >
+              visibility
+            </i>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef>Edit</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 50px; width: 50px"
+          >
+            <i class="material-icons" (click)="edit($event, element.orderId)">
+              edit
+            </i>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>Delete</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            style="max-width: 50px; width: 50px"
+          >
+            <i class="material-icons" (click)="delete($event, element.orderId)">
+              delete
+            </i>
+          </td>
+        </ng-container>
+
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDetail">
+          <td
+            mat-cell
+            *matCellDef="let element"
+            [attr.colspan]="columnsToDisplay.length"
+          >
+            <div
+              class="example-element-detail"
+              [@detailExpand]="
+                element == expandedElement ? 'expanded' : 'collapsed'
+              "
+            >
+              <hr />
+              <div class="row">
+                <div class="col-12">
+                  Payment Gateway: {{ element.paymentGateway.name }}
+                </div>
+              </div>
+              <div class="row" *ngIf="element.payment.coinbase">
+                <div class="col-12 mb-2">
+                  Charge ID:
+                  {{
+                    element.payment.coinbase.identifier
+                      ? element.payment.coinbase.identifier
+                      : 'N/A'
+                  }}<br />
+                  Context:
+                  {{
+                    element.payment.coinbase.context
+                      ? element.payment.coinbase.context
+                      : 'N/A'
+                  }}<br />
+                  Code:
+                  {{
+                    element.payment.coinbase.code
+                      ? element.payment.coinbase.code
+                      : 'N/A'
+                  }}<br />
+                  URL: Click
+                  <a
+                    [href]="
+                      'https://commerce.coinbase.com/charges/' +
+                      element.payment.coinbase.code
+                    "
+                    target="_blank"
+                    >here</a
+                  >
+                </div>
+              </div>
+              <hr *ngIf="element.gold" />
+              <div class="row mb-2" *ngIf="element.gold">
+                <div class="col-12 mb-2">
+                  <div>Gold Order</div>
+                  <div>
+                    RSN: {{ element.gold.rsn }}<br />
+                    Units: {{ element.gold.units }}M<br />
+                    Server:
+                    {{ element.gold.server === 1 ? 'OldSchool' : 'Runescape3'
+                    }}<br />
+                  </div>
+                </div>
+              </div>
+              <hr *ngIf="!isEmptyOrNull(element.accounts)" />
+              <div
+                class="row mb-2"
+                *ngFor="let account of element.accounts; let i = index"
+              >
+                <div class="col-12 mb-2">
+                  <div>Account #{{ i + 1 }}</div>
+                  <div class="mb-2">
+                    Account Id: {{ account._id }}<br />
+                    Account title: {{ account.title }}<br />
+                    Account price: ${{ account.price }}
+                  </div>
+                </div>
+              </div>
+              <hr *ngIf="!isEmptyOrNull(element.powerleveling)" />
+              <div
+                class="row mb-2"
+                *ngFor="let p of element.powerleveling; let i = index"
+              >
+                <div class="col-12 mb-2">
+                  <div>Powerleveling service #{{ i + 1 }}</div>
+                  <div class="mb-2">
+                    Powerleveling Id: {{ p._id }}<br />
+                    Powerleveling title: {{ p.skill.title }}<br />
+                    Powerleveling price: ${{ p.price }}<br />
+                    Powerleveling description: {{ p.from }} -> {{ p.to }} ({{
+                      p.xp | number
+                    }}
+                    XP)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr
+          mat-row
+          *matRowDef="let element; columns: columnsToDisplay"
+          class="example-element-row"
+          [class.example-expanded-row]="expandedElement === element"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: ['expandedDetail']"
+          class="example-detail-row"
+        ></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<li
+  *ngFor="
+    let order of data
+      | paginate
+        : { id: 'server', itemsPerPage: 10, currentPage: p, totalItems: total }
+  "
+  style="display: none"
+></li>

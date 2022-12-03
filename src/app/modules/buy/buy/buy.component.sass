@@ -1,0 +1,135 @@
+@import '../../../../assets/css/colors'
+
+\:host ::ng-deep
+    position: relative
+    font-family: 'Nexa Bold', sans-serif
+    .buy-page
+        .selected-game::after
+            font-family: "Font Awesome 5 Free"
+            font-weight: 900
+            content: "\f00c"
+            color: #f6b000
+            position: relative
+            top: -165px
+            left: 150px
+            font-size: 32px
+
+        ::placeholder
+            color: white
+
+        :-ms-input-placeholder
+            color: white
+
+        ::-ms-input-placeholder
+            color: white
+
+        .mat-flat-button.mat-primary
+            background: #0a101a
+        .main-container
+            height: 100%
+            width: 100%
+            min-height: 100vh
+            background: #0a101a url(/assets/images/branding/background2.png) center center no-repeat
+            background-size: cover
+            background-repeat: no-repeat
+            -webkit-background-size: cover
+            -moz-background-size: cover
+            -o-background-size: cover
+            // background-position-y: 100px
+            padding-top: 200px
+        .transparent-container
+            height: 100%
+            width: 100%
+            max-width: 1200px
+            min-width: 1200px
+            min-height: 561px
+            margin: 0 auto
+            background: rgba(255,255,255,0.1)
+            padding: 25px
+            margin-top: 50px
+            .total
+                font-size: 32px
+                color: white
+                padding: 0 90px
+            img
+                display: block
+                margin: 0 auto
+                // max-width: 250px
+                // width: 100%
+            .transparent-title
+                color: white
+                font-size: 16px
+                text-align: center
+            .transparent-description
+                text-align: center
+                margin-top: 10px
+                font-size: 32px
+                color: #f6b000
+            .box-buy
+                height: 100%
+                width: 100%
+                max-width: 350px
+                min-height: 58px
+                background: transparent url(/assets/images/branding/buy-input-bg.png) center center no-repeat
+                background-size: contain
+                background-repeat: no-repeat
+                -webkit-background-size: contain
+                -moz-background-size: contain
+                -o-background-size: contain
+                margin: 0 auto
+                input
+                    background-color: transparent!important
+                    border-color: transparent!important
+                    color: #fff!important
+                    width: 90%
+                    margin: 20px 15px 0 15px
+                    text-align: center
+                    font-size: 20px
+            .box-title
+                color: white
+                font-size: 16px
+                text-align: center
+        .img-preview-container
+            max-width: 374px
+            width: 100%
+            margin: -90px auto 0 auto
+        .img-preview-bg
+            background: transparent url(/assets/images/branding/img-preview-bg.png) center center no-repeat
+            background-size: contain
+            background-repeat: no-repeat
+            -webkit-background-size: contain
+            -moz-background-size: contain
+            -o-background-size: contain
+            cursor: pointer
+            height: 180px
+        .img-preview
+            padding: 30px
+            height: 100%
+        .landing-title
+            font-size: 48px
+            line-height: 48px
+            color: white
+            text-align: center
+            text-transform: uppercase
+        .landing-description
+            font-size: 26px
+            line-height: 26px
+            color: white
+            text-align: center
+            font-family: 'Century Gothic'
+            text-transform: uppercase
+            margin-bottom: 40px
+        .upper-text
+            font-size: 24px
+            line-height: 24px
+            color: white
+            text-align: center
+        .mid-text
+            font-size: 48px
+            line-height: 48px
+            color: white
+            text-align: center
+        // @media only screen and (max-width: 800px)
+        //     .mini-container
+        //         max-width: unset
+        //         max-height: unset

@@ -1,0 +1,26 @@
+<div class="selling-page">
+    <div class="main-container">
+        <div class="container-fluid">
+            <!-- <div class="row">
+        <div class="col-12 text-center form-title">
+            User Limits
+        </div>
+    </div> -->
+            <!-- <div class="row mb-4" *ngFor="let pg of pgs">
+        <div class="col-12 f16">
+            Name: {{pg.paymentGateway.name}}<br>
+            Limit: {{getCurrencySymbol(currency) }}{{getCurrencyConverted(pg.limit) }}<br>
+            Left: {{getCurrencySymbol(currency) }}{{getCurrencyConverted(pg.left) }}
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12 text-center form-title">
+            Orders History
+        </div>
+    </div> -->
+            <app-common-orders [selfUser]="true">
+            </app-common-orders>
+        </div>
+    </div>
+</div>

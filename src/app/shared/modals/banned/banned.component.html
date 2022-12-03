@@ -1,0 +1,19 @@
+<div class="container-fluid" *ngIf="data && data.message">
+    <div class="row text-center">
+        <div class="col-12">
+            <div class="title">Forbidden</div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="description">
+                {{data.message}}
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <button mat-raised-button type="button" (click)="close()">Close</button>
+        </div>
+    </div>
+</div>

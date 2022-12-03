@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center form-title">
+            Referral Orders History
+        </div>
+    </div>
+    <div class="row" *ngIf="statistics">
+        <div class="col-12 text-center form-description">
+            Orders: {{statistics.count}} - Total value: ${{statistics.total}}
+        </div>
+    </div>
+    <app-common-orders [referralHistory]="true" [referralId]="id" [selfUser]="false">
+    </app-common-orders>
+</div>

@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <form [formGroup]="usersForm" (ngSubmit)="search(usersForm.value)">
+        <div class="row">
+            <div class="col-3">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Enter a search value</mat-label>
+                    <input matInput placeholder="Enter a search value" formControlName="filter" type="text">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Filter By</mat-label>
+                    <mat-select formControlName="filterBy">
+                        <mat-option value="null">None</mat-option>
+                        <mat-option value="rsn">RSN</mat-option>
+                        <mat-option value="email">Email</mat-option>
+                        <mat-option value="ip">IP Address</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-left">
+                <button mat-raised-button type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="paginator">
+                <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+                <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-generic-table [displayedColumns]="displayedColumns" [data]="data" (action)="onAction($event)">
+</app-generic-table>
+
+
+<li *ngFor="let order of data | paginate: { id: 'server', itemsPerPage: 10, currentPage: p, totalItems: total }"
+    style="display: none;">
+</li>

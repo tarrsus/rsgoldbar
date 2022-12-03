@@ -1,0 +1,238 @@
+<div class="selling-page">
+  <div class="main-container">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 landing-title">
+          SELL YOUR <span class="color-gold">RUNESCAPE GOLD</span>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12 landing-description landing-description-mb">
+          <span class="color-gold">Save your time</span>, get everything that
+          you need
+        </div>
+      </div>
+      <div class="row">
+        <div class="offset-2 col-lg-4 col-xl-4 col-md-4">
+          <div class="transparent-container ml-auto mr-auto">
+            <div class="row">
+              <div class="col-12">
+                <img src="./assets/images/branding/logo-osrs.png" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 transparent-title">
+                WE’RE CURRENTLY <span class="color-gold">BUYING GOLD</span> FOR
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 transparent-description">
+                {{ getCurrencySymbol(currency)
+                }}{{ getCurrencyConverted(osrsBuying) | number }}
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12 box-title">Amount You’d Wish To Sell:</div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="box-buy">
+                  <input matInput [(ngModel)]="amount1" type="number" />
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12 box-title">Enter Character Name:</div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="box-buy">
+                  <input matInput [(ngModel)]="rsn1" type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="p-4">
+                  <button
+                    class="w-100 mr-auto ml-auto d-block"
+                    mat-flat-button
+                    color="primary"
+                    (click)="openLiveChat(disabled1(), 'OSRS', amount1)"
+                  >
+                    Sell Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-xl-4 col-md-4">
+          <div class="transparent-container ml-auto mr-auto">
+            <div class="row">
+              <div class="col-12">
+                <img src="./assets/images/branding/logo-rs3.png" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 transparent-title">
+                WE’RE CURRENTLY <span class="color-gold">BUYING GOLD</span> FOR
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 transparent-description">
+                {{ getCurrencySymbol(currency)
+                }}{{ getCurrencyConverted(rs3Buying) | number }}
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12 box-title">Amount You’d Wish To Sell:</div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="box-buy">
+                  <input matInput [(ngModel)]="amount2" type="number" />
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12 box-title">Enter Character Name:</div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="box-buy">
+                  <input matInput [(ngModel)]="rsn2" type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="p-4">
+                  <button
+                    class="w-100 mr-auto ml-auto d-block"
+                    mat-flat-button
+                    color="primary"
+                    (click)="openLiveChat(disabled2(), 'RS3', amount2)"
+                  >
+                    Sell Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="overlay-2" src="./assets/images/branding/buy-bg-lower.png" />
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 text-center landing-title mb-4">
+        HOW TO SELL <span class="color-gold">RUNESCAPE</span> GOLD TO RS<span
+          class="color-gold"
+          >GOLD</span
+        >BAR
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-around flex-wrap mb-4">
+      <div class="step">
+        <div class="row">
+          <div class="col-12">
+            <div class="rounded-box text-center">
+              <img
+                class="contactus"
+                src="./assets/images/branding/contactus-logo.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 title">
+            <span class="color-gold">CONTACT</span> US
+          </div>
+        </div>
+      </div>
+      <img
+        class="chevron"
+        src="/assets/images/branding/right-chevron-bg.png"
+        alt=""
+      />
+      <div class="step">
+        <div class="row">
+          <div class="col-12">
+            <div class="rounded-box text-center">
+              <img
+                class="handshake"
+                src="./assets/images/branding/handshake-logo.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 title">
+            MAKE A <span class="color-gold">DEAL</span>
+          </div>
+        </div>
+      </div>
+      <img
+        class="chevron"
+        src="/assets/images/branding/right-chevron-bg.png"
+        alt=""
+      />
+      <div class="step">
+        <div class="row">
+          <div class="col-12">
+            <div class="rounded-box text-center">
+              <img
+                class="reward"
+                src="./assets/images/branding/reward-logo.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 title">
+            <span class="color-gold">TRADE</span> US
+          </div>
+        </div>
+      </div>
+      <img
+        class="chevron"
+        src="/assets/images/branding/right-chevron-bg.png"
+        alt=""
+      />
+      <div class="step">
+        <div class="row">
+          <div class="col-12">
+            <div class="rounded-box text-center">
+              <img
+                class="verification"
+                src="./assets/images/branding/verification-logo.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 title">
+            GET <span class="color-gold">PAID</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2 mb-4">
+      <div class="col-12 text-center landing-description mt-5">
+        The rate at which we buy
+        <span class="color-gold">RuneScape gold</span> are always changing and
+        depends on<br />
+        different factors such as quantity and payment method.
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center landing-description mb-5">
+        We constantly check competitors’ prices to ensure that our
+        <span class="color-gold">OSRS Gold prices </span> are the best in the
+        market.
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,234 @@
+<div class="infernal-page">
+  <div class="main-container">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 landing-title">
+          <span class="color-gold">Infernal</span> Cape Service
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12 landing-description landing-description-mb">
+          <span class="color-gold">Save your time</span>, get everything that
+          you need
+        </div>
+      </div>
+      <div class="d-flex flex-row flex-wrap justify-content-around top-options">
+        <div class="p-2">
+          <h3>Region</h3>
+          <div class="d-flex flex-row justify-content-center flex-wrap">
+            <div
+              *ngFor="let region of regions"
+              class="p-2 mr-4 option"
+              [ngClass]="{ selected: region.name === selectedRegion }"
+              (click)="selectedRegion = region.name"
+            >
+              <img height="60px" src="{{ region.imgUrl }}" />
+              <p class="text-center item-text">{{ region.name }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-2">
+          <h3>Platform</h3>
+          <div class="d-flex flex-row justify-content-center flex-wrap">
+            <div
+              *ngFor="let platform of platforms"
+              class="p-2 mr-4 option"
+              [ngClass]="{ selected: platform.name === selectedPlatform }"
+              (click)="selectedPlatform = platform.name"
+            >
+              <img src="{{ platform.imgUrl }}" />
+              <p class="text-center item-text">{{ platform.name }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-row flex-wrap justify-content-center">
+        <div class="p-2 bottom-option">
+          <h3>Upload Speed</h3>
+          <div class="d-flex flex-row flex-wrap justify-content-center">
+            <div
+              *ngFor="let uploadSpeed of uploadSpeeds"
+              class="option square-option"
+              [ngClass]="{ selected: uploadSpeed === selectedSpeed }"
+              (click)="selectedSpeed = uploadSpeed"
+            >
+              <p>{{ uploadSpeed }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-2 bottom-option">
+          <h3>Stats</h3>
+          <div class="d-flex flex-row flex-wrap justify-content-center">
+            <div class="p-2 input-group mb-3 option square-option">
+              <div class="input-group-prepend">
+                <img src="./assets/images/infernal/arrow.png" alt="" />
+              </div>
+              <input
+                type="number"
+                min="0"
+                max="99"
+                class="form-control"
+                aria-label="arrow"
+                [formControl]="ranged"
+                oninput="if (value > 99 || value < 0) alert('Value has to be in range of 0 and 99')"
+                maxlength="2"
+                size="1"
+              />
+            </div>
+            <div class="p-2 input-group mb-3 option square-option">
+              <div class="input-group-prepend">
+                <img src="./assets/images/infernal/shield.png" alt="" />
+              </div>
+              <input
+                type="number"
+                min="0"
+                max="99"
+                class="form-control"
+                aria-label="shield"
+                [formControl]="defence"
+                oninput="if (value > 99 || value < 0) alert('Value has to be in range of 0 and 99')"
+                maxlength="2"
+              />
+            </div>
+            <div class="p-2 input-group mb-3 option square-option">
+              <div class="input-group-prepend">
+                <img src="./assets/images/infernal/prayer.png" alt="" />
+              </div>
+              <input
+                type="number"
+                min="0"
+                max="99"
+                class="form-control"
+                aria-label="prayer"
+                [formControl]="prayer"
+                oninput="if (value > 99 || value < 0) alert('Value has to be in range of 0 and 99')"
+                maxlength="2"
+              />
+            </div>
+            <div class="p-2 input-group mb-3 option square-option">
+              <div class="input-group-prepend">
+                <img src="./assets/images/infernal/magic.png" alt="" />
+              </div>
+              <input
+                type="number"
+                min="0"
+                max="99"
+                class="form-control"
+                aria-label="magic"
+                [formControl]="magic"
+                oninput="if (value > 99 || value < 0) alert('Value has to be in range of 0 and 99')"
+                maxlength="2"
+              />
+            </div>
+            <div class="p-2 input-group mb-3 option square-option">
+              <div class="input-group-prepend">
+                <img src="./assets/images/infernal/hitpoints.png" alt="" />
+              </div>
+              <input
+                type="number"
+                min="0"
+                max="99"
+                class="form-control"
+                aria-label="hitpoints"
+                [formControl]="hitpoints"
+                oninput="if (value > 99 || value < 0) alert('Value has to be in range of 0 and 99')"
+                maxlength="2"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="p-2 bottom-option">
+          <h3>Weapons</h3>
+          <div class="d-flex flex-row flex-wrap justify-content-center">
+            <div
+              *ngFor="let weapon of weapons"
+              class="option circle-option"
+              [ngClass]="{ selected: weapon.name === selectedWeapon }"
+              (click)="selectedWeapon = weapon.name"
+            >
+              <img src="{{ weapon.imgUrl }}" alt="" />
+              <p class="text-center">{{ weapon.name }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-2 bottom-option last-bt">
+          <h3>Misc</h3>
+          <div class="d-flex flex-row flex-wrap justify-content-center">
+            <div
+              *ngFor="let misc of miscs"
+              class="option circle-option"
+              [ngClass]="{ selected: selectedMiscs[misc.name] === true }"
+              (click)="selectedMiscs[misc.name] = !selectedMiscs[misc.name]"
+            >
+              <img src="{{ misc.imgUrl }}" alt="" />
+              <p class="text-center">{{ misc.name }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 d-flex flex-row justify-content-center mt-5">
+          <button id="request" (click)="openLiveChat(disabled())">
+            Request Quote
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Overlay -->
+  <img class="overlay-2" src="./assets/images/branding/buy-bg-lower.png" />
+  <div class="container-fluid">
+    <div class="d-flex flex-row justify-content-around flex-wrap text-center">
+      <div class="details">
+        <img src="./assets/images/infernal/tzkal.png" alt="" />
+        <h2>
+          <span class="color-gold">Professional </span> Infernal Cape Service
+        </h2>
+        <p class="color-gold">We can take infernal capes in any build</p>
+        <p>Our employees are only experienced runescape players</p>
+        <p class="color-gold">
+          We taking inferno capes with the safest methods
+        </p>
+        <p>We will offer you the best price in the market</p>
+        <p class="color-gold">
+          Our employees took more than 1200+ capes on every build
+        </p>
+      </div>
+      <div class="details" id="tos">
+        <img src="./assets/images/infernal/tos.png" alt="" />
+        <h2>
+          <span class="color-gold">Terms of Service </span>
+        </h2>
+        <p class="text-uppercase">
+          By using our service you are agreeing to the following:
+        </p>
+        <ol>
+          <li>
+            Account details are sent directly through DM to the infernal worker
+            or owner.
+          </li>
+          <li class="color-gold">The buyer must pay upfront.</li>
+          <li>
+            If a cape is not completed in 1 run you will receive a second
+            attempt or refund.
+          </li>
+          <li class="color-gold">
+            The customer will provide the gear/supplies required for the
+            service.
+          </li>
+          <li>
+            We are not responsible for any bans or mules during of after the
+            service has been completed.
+          </li>
+          <li class="color-gold">
+            We are not responsible for any cape removals after the service is
+            done.
+          </li>
+          <li>
+            By purchasing an inferno cape service you agreee with our terms of
+            services.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>

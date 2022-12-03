@@ -1,0 +1,252 @@
+<div class="swap-page">
+  <div class="main-container">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 landing-title">
+          SWAP YOUR <span class="color-gold">RUNESCAPE GOLD</span>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12 landing-description landing-description-mb">
+          <span class="color-gold">Save your time</span>, get everything that
+          you need
+        </div>
+      </div>
+      <div class="row">
+        <div class="offset-lg-2 col-lg-4 col-xl-4 col-md-4">
+          <div class="transparent-container ml-auto mr-auto">
+            <div class="row">
+              <div class="col-12">
+                <img src="./assets/images/branding/logo-osrs.png" />
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12 box-title">
+                Amount You'd Wish To Swap To
+                <span class="color-gold">RS3</span>:
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="box-buy">
+                  <input matInput [(ngModel)]="amount1" type="number" #rs3 />
+                </div>
+              </div>
+            </div>
+
+            <!-- What you get -->
+            <div class="row mt-4">
+              <div class="col-12 box-title">
+                What you get in
+                <span class="color-gold">RS3</span>:
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="box-buy flex-row d-flex justify-content-center">
+                  <p style="color: #fff; align-self: center">
+                    {{ (rs3.value * rates.rs3).toFixed(2) }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Character Name -->
+            <div class="row mt-2">
+              <div class="col-12 box-title">Enter Character Name:</div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="box-buy">
+                  <input matInput [(ngModel)]="rsn1" type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="p-4">
+                  <button
+                    class="w-100 mr-auto ml-auto d-block"
+                    mat-flat-button
+                    color="primary"
+                    (click)="openLiveChat(disabled1(), 'OSRS', amount1, rsn1)"
+                  >
+                    SWAP NOW
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-xl-4 col-md-4">
+          <div class="transparent-container ml-auto mr-auto">
+            <div class="row">
+              <div class="col-12">
+                <img src="./assets/images/branding/logo-rs3.png" />
+              </div>
+            </div>
+            <!-- <div class="row">
+                            <div class="col-12 transparent-title">
+                                WE'RE CURRENTLY <span class="color-gold">BUYING GOLD</span> FOR
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 transparent-description">
+                                {{ getCurrencySymbol(currency)}}{{getCurrencyConverted(rs3Buying) | number}}
+                            </div>
+                        </div> -->
+            <div class="row mt-4">
+              <div class="col-12 box-title">
+                Amount You'd Wish To Swap To
+                <span class="color-gold">OSRS</span>:
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="box-buy">
+                  <input matInput [(ngModel)]="amount2" #osrs type="number" />
+                </div>
+              </div>
+            </div>
+
+            <!-- What you get -->
+            <div class="row mt-4">
+              <div class="col-12 box-title">
+                What you get in
+                <span class="color-gold">OSRS</span>:
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="box-buy d-flex flex-row justify-content-center">
+                  <p style="color: #fff; align-self: center">
+                    {{ (osrs.value * rates.osrs).toFixed(2) }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Character Name -->
+            <div class="row mt-2">
+              <div class="col-12 box-title">Enter Character Name:</div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="box-buy">
+                  <input matInput [(ngModel)]="rsn2" type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="p-4">
+                  <button
+                    class="w-100 mr-auto ml-auto d-block"
+                    mat-flat-button
+                    color="primary"
+                    (click)="openLiveChat(disabled2(), 'RS3', amount2, rsn2)"
+                  >
+                    SWAP NOW
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="overlay-2" src="./assets/images/branding/buy-bg-lower.png" />
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 text-center mb-4 landing-title">
+        How to <span class="color-gold">Swap</span> Runescape Gold
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 60px">
+      <div class="col-lg-3 col-xl-3 col-md-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="rounded-box text-center">
+              <img
+                class="contactus"
+                src="./assets/images/branding/choosecurrency.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 title">
+            Choose <span class="color-gold">Currency</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-xl-3 col-md-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="rounded-box text-center">
+              <img
+                class="handshake"
+                src="./assets/images/branding/enteramount.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 title">
+            <span class="color-gold">Enter</span> Amount
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-xl-3 col-md-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="rounded-box text-center">
+              <img
+                class="reward"
+                src="./assets/images/branding/contactus.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 title">
+            <span class="color-gold">Contact</span> Us
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-xl-3 col-md-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="rounded-box text-center">
+              <img
+                class="verification"
+                src="./assets/images/branding/verification-logo.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 title">
+            <span class="color-gold">Receive</span> your gold
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2 mb-4">
+      <p class="col-12 text-center landing-description">
+        The rate at which we
+        <span class="color-gold">swap RuneScape gold</span> are always changing.
+      </p>
+    </div>
+    <div class="row">
+      <p class="col-12 text-center landing-description">
+        We constantly check competitors' prices to ensure
+        <span class="color-gold"
+          >that our OSRS Gold prices are the best in the market.</span
+        >
+      </p>
+    </div>
+  </div>
+</div>

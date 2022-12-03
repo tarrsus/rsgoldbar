@@ -1,0 +1,151 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h3>User Details</h3>
+        </div>
+    </div>
+    <ng-container *ngIf="user">
+        <div class="row">
+            <div class="col-12">
+                <div class="header">
+                    Email: {{user.email}}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <div>Group name: {{user.groupName}}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div>Last updated: {{user.lastUpdated | date:'short'}}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div>Date Created: {{user.dateCreated | date:'short'}}</div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <div>Update Group</div>
+            </div>
+        </div>
+    </ng-container>
+    <div class="row">
+        <div class="col-12">
+            <form [formGroup]="userForm" (ngSubmit)="save(userForm.value)" class="input-black">
+
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Group</mat-label>
+                    <mat-select formControlName="groupId">
+                        <mat-option [value]="2">Worker</mat-option>
+                        <mat-option [value]="4">Customer</mat-option>
+                        <mat-option [value]="-1">Banned</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <div class="col-12 text-left">
+                    <button mat-raised-button type="submit" [disabled]="!userForm.valid">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <form [formGroup]="paymentGatewaysForm">
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3>User Limits</h3>
+            </div>
+        </div>
+        <ng-container formArrayName="pgs">
+            <ng-container *ngFor="let f of getPgs().controls; index as i">
+                <ng-container [formGroupName]="i">
+
+                    <div class="row">
+                        <div class="col-3">
+                            <mat-form-field appearance="outline" class="stock-field">
+                                <mat-label>Payment Gateway Name</mat-label>
+                                <input matInput placeholder="Payment Gateway Name" formControlName="name">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field appearance="outline" class="stock-field">
+                                <mat-label>Payment Gateway Id</mat-label>
+                                <input matInput placeholder="Payment Gateway Id" formControlName="paymentGatewayId">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field appearance="outline" class="stock-field">
+                                <mat-label>Left</mat-label>
+                                <input matInput placeholder="Left" formControlName="left" type="number">
+                                <mat-hint>left <strong>required</strong></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field appearance="outline" class="stock-field">
+                                <mat-label>Limit</mat-label>
+                                <input matInput placeholder="Limit" formControlName="limit" type="number">
+                                <mat-hint>Limit <strong>required</strong></mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+                <hr>
+            </ng-container>
+            <div class="row">
+                <div class="col-12 text-left">
+                    <button mat-raised-button type="button" (click)="updatePgs()">
+                        Update Payment Gateways
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+    </form>
+    <hr>
+    <div class="row mt-4">
+        <div class="col-12">
+            <h3>User IP Logs</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="paginator">
+                <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+                <pagination-controls (pageChange)="getUserIpsPage($event)" id="server"></pagination-controls>
+            </div>
+        </div>
+    </div>
+    <app-generic-table [displayedColumns]="userIpsDisplayedColumns" [data]="userIps" (action)="onActionIps($event)">
+    </app-generic-table>
+
+    <hr>
+    <div class="row mt-4">
+        <div class="col-12">
+            <h3>User RSNs</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="paginator">
+                <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+                <pagination-controls (pageChange)="getUserRsnsPage($event)" id="server"></pagination-controls>
+            </div>
+        </div>
+    </div>
+    <app-generic-table [displayedColumns]="userRsnsDisplayedColumns" [data]="userRsns">
+    </app-generic-table>
+
+
+    <li *ngFor="let _ of userIps | paginate: { id: 'server', itemsPerPage: 10, currentPage: userIpPage, totalItems: totalIps }"
+        style="display: none;">
+    </li>
+
+    <li *ngFor="let _ of userRsns | paginate: { id: 'server', itemsPerPage: 10, currentPage: userRsnPage, totalItems: totalRsns }"
+        style="display: none;">
+    </li>
+</div>
