@@ -3,6 +3,12 @@
 \:host ::ng-deep
     position: relative
     font-family: 'Nexa Bold', sans-serif
+
+    .main-container
+        margin-top: -130px !important
+        margin-bottom: -50px !important
+    //     z-index: 10
+
     .mat-expansion-panel
         background-color: transparent !important
         // font-size: 48px
@@ -24,20 +30,40 @@
         color: white
     .mat-expansion-indicator::after
         color: white !important
+
+    .landing-container
+        height: 100%
+        width: 100%
+        max-width: 400px
+        max-height: 250px
+        min-height: 250px
+        background: transparent url(/assets/images/branding/transparent-container.png) center center no-repeat
+        background-size: cover
+        background-repeat: no-repeat
+        -webkit-background-size: cover
+        -moz-background-size: cover
+        -o-background-size: cover
+        margin-bottom: 10px
+
+    .mat-flat-button.mat-primary
+        background: #0a101a
+        &:hover
+            color: #f6b000 !important
+
     .landing-title
-        font-size: 48px
+        font-size: 40px
         line-height: 48px
         color: white
         text-align: center
         text-transform: uppercase
     .landing-description
-        font-size: 26px
+        font-size: 18px
         line-height: 26px
         color: white
         text-align: center
         font-family: 'Century Gothic'
         text-transform: uppercase
-        margin-bottom: 40px
+        margin-bottom: 10px
     .second-container
         height: 100%
         width: 100%

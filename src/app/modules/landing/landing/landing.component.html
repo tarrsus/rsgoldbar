@@ -1,6 +1,6 @@
 <div class="selling-page">
   <div class="main-container">
-    <div class="container-fluid">
+    <div class="container-fluid mt-0">
       <div class="row">
         <div class="col-12 landing-title">
           WELCOME TO RS<span class="color-gold">GOLD</span>BAR
@@ -13,8 +13,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="offset-lg-2 col-lg-4 col-xl-4 col-md-4">
-          <div class="transparent-container ml-auto mr-auto">
+        <div class="offset-md-2 offset-sm-none col-lg-4 col-xl-4 col-md-4">
+          <div class="landing-container ml-auto mr-auto">
             <div class="row">
               <div class="col-12">
                 <img src="./assets/images/branding/logo-osrs.png" />
@@ -60,7 +60,7 @@
                     color="primary"
                     (click)="openLiveChat(disabled1(), 'OSRS', amount1)"
                   >
-                    Sell Now
+                    Buy Now
                   </button>
                 </div>
               </div>
@@ -68,7 +68,7 @@
           </div>
         </div>
         <div class="col-lg-4 col-xl-4 col-md-4">
-          <div class="transparent-container ml-auto mr-auto">
+          <div class="landing-container ml-auto mr-auto">
             <div class="row">
               <div class="col-12">
                 <img src="./assets/images/branding/logo-rs3.png" />
@@ -85,7 +85,7 @@
                 }}{{ getCurrencyConverted(rs3Buying) | number }}
               </div>
             </div>
-            <div class="row mt-4">
+            <!-- <div class="row mt-4">
               <div class="col-12 box-title">Amount You’d Wish To Sell:</div>
             </div>
             <div class="row">
@@ -104,7 +104,7 @@
                   <input matInput [(ngModel)]="rsn2" type="text" />
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="row">
               <div class="col-12">
                 <div class="p-4">
@@ -114,7 +114,7 @@
                     color="primary"
                     (click)="openLiveChat(disabled2(), 'RS3', amount2)"
                   >
-                    Sell Now
+                    Buy Now
                   </button>
                 </div>
               </div>
@@ -125,6 +125,17 @@
     </div>
   </div>
 </div>
+<div class="d-none d-md-flex flex-row mx-5">
+    <div class="d-block">
+      <h2 class="text-white">Trustpilot<span class="color-gold ml-2">Reviews</span></h2>
+    <div class="d-flex text-center">
+      <img src="./assets/images/branding/stars-4.5.svg" alt="" />
+    <!-- <p class="d-flex average-review">4.5</p> -->
+    </div>
+    </div>
+  <app-trustpilot-reviews></app-trustpilot-reviews>
+</div>
+
 <div class="second-container">
   <div class="container-fluid">
     <div class="row">

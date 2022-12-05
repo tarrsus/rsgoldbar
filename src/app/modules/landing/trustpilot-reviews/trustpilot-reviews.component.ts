@@ -49,7 +49,7 @@ export class TrustpilotReviewsComponent implements OnInit {
   ];
 
   indexOfFirst = 1;
-  indexOfLast = 3;
+  indexOfLast = 4;
 
   displayedReviews = this.reviews.slice(this.indexOfFirst, this.indexOfLast);
 
