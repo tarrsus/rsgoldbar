@@ -11,11 +11,7 @@
       </a>
     </div>
 
-    <a
-      mat-button
-      class="mat-button navbar-link"
-      [routerLink]="['/buy/oldschool']"
-    >
+    <a mat-button class="mat-button navbar-link" [routerLink]="['/buy/oldschool']">
       Buy Gold
     </a>
 
@@ -37,29 +33,15 @@
 
     <div class="flex-spacer"></div>
 
-    <button
-      mat-button
-      class="mat-button navbar-link"
-      [matMenuTriggerFor]="currencyMenu"
-    >
-      <img
-        style="height: 20px"
-        [src]="'/assets/images/flags/' + currency + '.png'"
-      />
+    <button mat-button class="mat-button navbar-link" [matMenuTriggerFor]="currencyMenu">
+      <img style="height: 15px; width: 20px;" [src]="'/assets/images/flags/' + currency + '.png'" />
       {{ currency }}
       <i class="fas fa-caret-down"></i>
     </button>
 
     <mat-menu #currencyMenu="matMenu">
-      <button
-        mat-menu-item
-        *ngFor="let c of currencies"
-        (click)="watcher.setCurrency(c.name)"
-      >
-        <img
-          style="height: 20px"
-          [src]="'/assets/images/flags/' + c.name + '.png'"
-        />
+      <button mat-menu-item *ngFor="let c of currencies" (click)="watcher.setCurrency(c.name)">
+        <img style="height: 15px; width: 20px;" [src]="'/assets/images/flags/' + c.name + '.png'" />
         {{ c.name }}
       </button>
     </mat-menu>
@@ -68,73 +50,34 @@
             <i class="fab fa-discord"></i> Discord
         </a> -->
 
-    <button
-      mat-button
-      class="mat-button navbar-link"
-      mat-button
-      [matMenuTriggerFor]="profileMenu"
-      *ngIf="isLoggedIn"
-    >
+    <button mat-button class="mat-button navbar-link" mat-button [matMenuTriggerFor]="profileMenu" *ngIf="isLoggedIn">
       Profile <i class="fas fa-caret-down"></i>
     </button>
 
     <mat-menu #profileMenu="matMenu">
-      <button
-        class="mat-button navbar-link"
-        mat-menu-item
-        routerLink="/profile/change-password"
-      >
+      <button class="mat-button navbar-link" mat-menu-item routerLink="/profile/change-password">
         Profile
       </button>
-      <button
-        class="mat-button navbar-link"
-        mat-menu-item
-        routerLink="/profile/orders"
-      >
+      <button class="mat-button navbar-link" mat-menu-item routerLink="/profile/orders">
         Orders
       </button>
-      <button
-        class="mat-button navbar-link"
-        mat-menu-item
-        routerLink="/admin"
-        *ngIf="isAdmin || isWorker"
-      >
+      <button class="mat-button navbar-link" mat-menu-item routerLink="/admin" *ngIf="isAdmin || isWorker">
         ACP
       </button>
     </mat-menu>
 
-    <button
-      mat-button
-      class="mat-button navbar-link"
-      routerLink="/login"
-      *ngIf="!isLoggedIn"
-    >
+    <button mat-button class="mat-button navbar-link" routerLink="/login" *ngIf="!isLoggedIn">
       <i class="fas fa-sign-in-alt"></i> Login
     </button>
-    <button
-      mat-button
-      class="mat-button navbar-link"
-      routerLink="/register"
-      *ngIf="!isLoggedIn"
-    >
+    <button mat-button class="mat-button navbar-link" routerLink="/register" *ngIf="!isLoggedIn">
       <i class="fas fa-user"></i> Sign Up
     </button>
 
-    <button
-      mat-button
-      class="mat-button navbar-link"
-      (click)="watcher.logout()"
-      *ngIf="isLoggedIn"
-    >
+    <button mat-button class="mat-button navbar-link" (click)="watcher.logout()" *ngIf="isLoggedIn">
       <i class="fas fa-sign-in-alt"></i> Sign Out
     </button>
 
-    <button
-      class="mobile-navigator"
-      mat-button
-      #clickMenuTrigger="matMenuTrigger"
-      [matMenuTriggerFor]="mobileMenuOne"
-    >
+    <button class="mobile-navigator" mat-button #clickMenuTrigger="matMenuTrigger" [matMenuTriggerFor]="mobileMenuOne">
       <i class="material-icons"> menu </i>
     </button>
   </div>
