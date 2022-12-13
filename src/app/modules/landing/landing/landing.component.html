@@ -54,7 +54,7 @@
               <div class="col-12">
                 <div class="p-4">
                   <button class="w-100 mr-auto ml-auto d-block" mat-flat-button color="primary"
-                    (click)="openLiveChat(disabled1(), 'OSRS', amount1)">
+                    [routerLink]="['/buy/oldschool']" (click)="openLiveChat(disabled1(), 'OSRS', amount1)">
                     Buy Now
                   </button>
                 </div>
@@ -104,7 +104,7 @@
               <div class="col-12">
                 <div class="p-4">
                   <button class="w-100 mr-auto ml-auto d-block" mat-flat-button color="primary"
-                    (click)="openLiveChat(disabled2(), 'RS3', amount2)">
+                    [routerLink]="['/buy/runescape3']" (click)="openLiveChat(disabled2(), 'RS3', amount2)">
                     Buy Now
                   </button>
                 </div>
